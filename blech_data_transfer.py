@@ -1,5 +1,15 @@
 """
-Cache manual selections for user convenience
+- Only use user list from the server
+- Cache manual selections for user convenience
+
+- Recording log will contain:
+    1) Date
+    2) Time
+    3) User
+    4) Project name
+    5) User email
+    6) Recording name
+    7) Recording path
 """
 
 import easygui
@@ -39,6 +49,10 @@ else:
 
 ##############################
 ##############################
+
+# Check if users list exists on the server
+# If it does, copy it locally 
+...
 
 # Get list of users on the blech server
 users_list_path = os.path.join(server_path, 'users_list.txt')
@@ -142,5 +156,39 @@ for file in tqdm(file_list):
         print("")
 print("Data transfer complete.")
 print("")
+
+##############################
+##############################
+
+# Check if recording log exists on server 
+recording_log_path = os.path.join(server_path, 'recording_log.csv')
+if not os.path.exists(recording_log_path):
+    print(f"Recording log not found: {recording_log_path}")
+    # Ask user if this is expected, if it is, create a new recording log
+    # If it's not, exit
+
+# Copy recording log locally
+shutil.copy2(recording_log_path, script_path)
+
+# Append new entry to recording log
+recording_log = pd.read_csv('recording_log.csv')
+new_entry = pd.DataFrame({'date': [time.strftime('%Y-%m-%d')],
+                          'time': [time.strftime('%H:%M:%S')],
+                          'user': [user],
+                          'project': [project],
+                          'email': [email],
+                          'recording': [recording],
+                          'recording_path': [server_data_folder]})
+recording_log = recording_log.append(new_entry, ignore_index=True)
+recording_log.to_csv('recording_log.csv', index=False)
+
+# Copy recording log back to server
+shutil.copy2('recording_log.csv', server_path)
+print("Recording log updated.")
+print("")
+
+##############################
+##############################
+
 print("Exiting...")
 sys.exit()
