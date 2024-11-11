@@ -1,0 +1,10 @@
+Username,Directory,Email
+Abuzar,Abuzar_Data,abuzarmahmood@gmail.com
+Christina,Christina,cmazzio@brandeis.edu
+Emma,emmalala_dat,emmalala@brandeis.edu
+Hannah,Hannah,hgerm@brandeis.edu
+Jian-You,JY_Data,jylin@brandeis.edu
+Kathleen,Kathleen,kmaigler@brandeis.edu
+Martin,Martin_Data,ramartin@brandeis.edu
+Natasha,Natasha_data,natashabt@brandeis.edu
+Thomas,Thomas,thomasgray@brandeis.edu

@@ -9,6 +9,12 @@ from tqdm import tqdm
 import pandas as pd
 from datetime import datetime
 from time import time
+import argparse
+
+parser = argparse.ArgumentParser(
+        description='Scan the file-system for any datasets and see if they have accompanied metadata')
+parser.add_argument('--ignore_blacklist', action='store_true', help='Ignore the blacklist file')
+args = parser.parse_args()
 
 start_time = time()
 script_path = os.path.realpath(__file__)
@@ -37,28 +43,34 @@ if not os.path.exists(server_home_dir):
 
 print(f'Server home directory: {server_home_dir}')
 
-# Look for blacklist file in both server_home_dir and dir_path
-blacklist_file = [
-        os.path.join(server_home_dir, 'sentry_blacklist.txt'),
-        os.path.join(dir_path, 'sentry_blacklist.txt')
-        ]
-for f in blacklist_file:
-    if os.path.exists(f):
-        blacklist_file = f
-        break
+if not args.ignore_blacklist:
+    # Look for blacklist file in both server_home_dir and dir_path
+    blacklist_file = [
+            os.path.join(server_home_dir, 'sentry_blacklist.txt'),
+            os.path.join(dir_path, 'sentry_blacklist.txt')
+            ]
+    for f in blacklist_file:
+        if os.path.exists(f):
+            blacklist_file = f
+            break
+    else:
+        print('Blacklist file not found')
+        print('Continuing without blacklist')
+
+    print(f'Blacklist file: {blacklist_file}')
+    print()
+
+    # Read blacklist file
+    if blacklist_file:
+        with open(blacklist_file, 'r') as f:
+            blacklist = f.read().splitlines()
+        blacklist_str = '\n'.join(blacklist)
+        print('Blacklist:\n'+blacklist_str) 
+        print()
 else:
-    print('Blacklist file not found')
-    print('Continuing without blacklist')
-
-print(f'Blacklist file: {blacklist_file}')
-print()
-
-# Read blacklist file
-if blacklist_file:
-    with open(blacklist_file, 'r') as f:
-        blacklist = f.read().splitlines()
-    blacklist_str = '\n'.join(blacklist)
-    print('Blacklist:\n'+blacklist_str) 
+    blacklist = []
+    blacklist_str = 'None'
+    print('Ignoring blacklist')
     print()
 
 
@@ -140,9 +152,9 @@ out_path = os.path.join(server_home_dir, f'dataset_frame.csv')
 dataset_frame.to_csv(out_path)
 with open(os.path.join(server_home_dir, 'last_scan.txt'), 'w') as f:
     f.write(date_time)
-    f.write('\n')
-    f.write(f'Time taken: {time_taken} seconds')
-    f.write('\n')
+    f.write('\n\n')
+    f.write(f'Time taken: {(time_taken)/60:.2f} minutes')
+    f.write('\n\n')
     f.write('Blacklist:\n'+blacklist_str)
-    f.write('\n')
+    f.write('\n\n')
     f.write('Top level directories processed:\n'+top_level_dirs_str)
