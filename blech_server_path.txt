@@ -1,1 +1,1 @@
-# Add server path here
+/media/files_brandeis_drive

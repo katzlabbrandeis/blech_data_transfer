@@ -24,3 +24,16 @@ NOTE: This system will only work well if this method of copying cannot be side-s
     6) Recording name
     7) Recording path
 - Directory to be copied can be specified both via the command line and via popup
+
+# Moonshot
+- Autoprocess uploaded data and extract recording quality features such as:
+    - Number of units
+    - Unit amplitude
+    - Unit signal-to-noise ratio
+    - Mean firing rate per unit
+    - Responsive fraction
+    - Discriminative fraction
+    - Palatable fraction
+    - Dynamic fraction
+    - Drift descriptors
+    - Unit similarity 
