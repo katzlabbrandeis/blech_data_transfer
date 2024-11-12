@@ -37,3 +37,26 @@ NOTE: This system will only work well if this method of copying cannot be side-s
     - Dynamic fraction
     - Drift descriptors
     - Unit similarity 
+
+# How to use
+
+## blech_data_transfer.py
+```
+usage: python blech_data_transfer.py [-h] data_folder
+
+Transfer data from the blech server to the local machine.
+
+positional arguments:
+  data_folder  Path to local data folder.
+
+options:
+  -h, --help   show this help message and exit
+```
+
+## mount_katz_drive.sh
+```
+usage: ./mount_katz_drive.sh
+```
+Will first ask for machine sudo password, then for brandeis password.
+Will mount the katz drive to the local machine at /media/files_brandeis_drive by default.
+Edit the script to change the mount location.
