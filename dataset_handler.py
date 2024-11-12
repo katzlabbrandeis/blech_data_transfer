@@ -41,11 +41,13 @@ class DatasetFrameLogger:
         self.log_path = os.path.join(self.write_dir, 'dataset_frame_log.txt')
         print(f"Logging to: {self.log_path}")
         self.current_user = os.getlogin()
+        self.current_computer = os.uname().nodename
         print(f"Current user: {self.current_user}")
+        print(f"Current computer: {self.current_computer}")
 
     def log(self, msg):
         with open(self.log_path, 'a') as self.log_cxn:
-            write_str = f"{get_time_pretty()} - {self.current_user}: {msg}\n\n"
+            write_str = f"{get_time_pretty()} - {self.current_user}@{self.current_computer}: {msg}\n\n"
             self.log_cxn.write(write_str)
             print(write_str)
 
@@ -166,7 +168,7 @@ class DatasetFrameHandler:
         If logs are not present on both local and server, copy the one that is present.
         If present on both, merge and update both
         """
-        subset_cols = ['user', 'recording', 'recording_path']
+        subset_cols = ['user', 'recording', 'recording_path', 'info_file_exists']
         dataset_frame_path_list = [
                 os.path.join(self.server_home_dir, 'dataset_frame.csv'),
                 os.path.join(self.dir_path, 'dataset_frame.csv')

@@ -84,6 +84,7 @@ else:
 # Check if ".info" file exists in the data folder
 info_file = glob(os.path.join(data_folder, '*.info'))
 while len(info_file) == 0:
+    info_file = glob(os.path.join(data_folder, '*.info'))
     print("""
     No ".info" file found in the data folder.
     Run blech_exp_info.py to create an ".info" file.
@@ -181,12 +182,12 @@ while int(copy_dir) not in subdir_inds+[-1] and int(copy_dir) != -1:
 if int(copy_dir) == -1:
     print("Creating new subfolder...")
     new_subdir = input("Enter new subfolder name: ")
-    copy_dir_path = os.path.join(user_path, new_subdir)
-    if not os.path.exists(copy_dir_path):
-        os.makedirs(copy_dir_path)
-        print(f"Creating new subfolder: {os.path.join(user_path, new_subdir)}")
+    copy_dir = os.path.join(user_path, new_subdir)
+    if not os.path.exists(copy_dir):
+        os.makedirs(copy_dir)
+        print(f"Creating new subfolder: {os.path.join(copy_dir)}")
     else:
-        print(f"Subfolder already exists: {copy_dir_path}")
+        print(f"Subfolder already exists: {copy_dir}")
         print("Continuing...")
         print("")
 else:
@@ -254,7 +255,15 @@ print("")
 # Append new entry to recording log
 email = users_list.loc[
         users_list['Username'] == user, 'Email'].values[0]
-entry_keys = ['date', 'time', 'user', 'email', 'recording', 'recording_path']
+entry_keys = [
+        'date', 
+        'time', 
+        'user', 
+        'email', 
+        'recording', 
+        'recording_path', 
+        'info_file_exists'
+        ]
 entry_dict = dict(
         zip(
             entry_keys,
@@ -263,7 +272,9 @@ entry_dict = dict(
              user,
              email,
              os.path.basename(data_folder),
-             server_data_folder]
+             server_data_folder,
+             True
+             ]
             )
         )
 
