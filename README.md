@@ -1,3 +1,4 @@
+# Introduction
 Code to:
 1. Transfer ephys data from the local machine to the server
     - Recording will be copied to directory of specified user, under a specific project name
@@ -25,19 +26,6 @@ NOTE: This system will only work well if this method of copying cannot be side-s
     7) Recording path
 - Directory to be copied can be specified both via the command line and via popup
 
-# Moonshot
-- Autoprocess uploaded data and extract recording quality features such as:
-    - Number of units
-    - Unit amplitude
-    - Unit signal-to-noise ratio
-    - Mean firing rate per unit
-    - Responsive fraction
-    - Discriminative fraction
-    - Palatable fraction
-    - Dynamic fraction
-    - Drift descriptors
-    - Unit similarity 
-
 # How to use
 
 ## blech_data_transfer.py
@@ -57,6 +45,19 @@ options:
 ```
 usage: ./mount_katz_drive.sh
 ```
-Will first ask for machine sudo password, then for brandeis password.
-Will mount the katz drive to the local machine at /media/files_brandeis_drive by default.
-Edit the script to change the mount location.
+- Will first ask for machine sudo password, then for brandeis password.
+- Will mount the katz drive to the local machine at /media/files_brandeis_drive by default.
+- Edit the script to change the mount location.
+
+# Moonshot
+- Autoprocess uploaded data and extract recording quality features such as:
+    - Number of units
+    - Unit amplitude
+    - Unit signal-to-noise ratio
+    - Mean firing rate per unit
+    - Responsive fraction
+    - Discriminative fraction
+    - Palatable fraction
+    - Dynamic fraction
+    - Drift descriptors
+    - Unit similarity 
