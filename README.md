@@ -1,8 +1,8 @@
 Code to:
-    1) Transfer ephys data from the local machine to the server
-        - Recording will be copied to directory of specified user, under a specific project name
-    2) Check that info file is present
-    3) Update recording log
+1. Transfer ephys data from the local machine to the server
+    - Recording will be copied to directory of specified user, under a specific project name
+2. Check that info file is present
+3. Update recording log
 
 NOTE: This system will only work well if this method of copying cannot be side-stepped
     by the user without including metadata.
