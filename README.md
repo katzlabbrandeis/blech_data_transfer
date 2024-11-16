@@ -42,6 +42,7 @@ options:
 ```
 
 ## mount_katz_drive.sh
+First install `cifs-utils` ::: `sudo apt-get install cifs-utils`
 ```
 usage: ./mount_katz_drive.sh
 ```
