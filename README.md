@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/cb03c5c9-da50-40fa-9fbe-99e29376615c)
+Courtesy of ChatGPT
+
 # Introduction
 Code to:
 1. Transfer ephys data from the local machine to the server
