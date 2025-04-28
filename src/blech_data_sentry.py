@@ -16,6 +16,7 @@ import pandas as pd
 from datetime import datetime
 from time import time
 import argparse
+from src.utils.utils import base_dir_path as dir_path 
 
 
 def parse_arguments():
@@ -49,8 +50,10 @@ def setup_server_home_dir(server_path):
     """Set up the server home directory"""
     server_home_dir = os.path.join(server_path, 'data_management')
     if not os.path.exists(server_home_dir):
+        print(f'Creating server home directory: {server_home_dir}')
         os.mkdir(server_home_dir)
-    print(f'Server home directory: {server_home_dir}')
+    else:
+        print(f'Server home directory already exists: {server_home_dir}')
     return server_home_dir
 
 
@@ -78,7 +81,7 @@ def handle_blacklist(server_home_dir, dir_path, ignore_blacklist):
         with open(blacklist_file, 'r') as f:
             blacklist = f.read().splitlines()
         blacklist_str = '\n'.join(blacklist)
-        print('Blacklist:\n'+blacklist_str) 
+        print('Blacklist:\n'+'========='+'\n'+blacklist_str) 
         print()
         return blacklist, blacklist_file, blacklist_str
     else:
@@ -178,7 +181,9 @@ def write_results(dataset_frame, server_home_dir, start_time, blacklist_str, top
     time_taken = end_time - start_time
     print(f'Writing dataset_frame to csv file')
     out_path = os.path.join(server_home_dir, f'dataset_frame.csv')
+    print(f'Output path: {out_path}')
     dataset_frame.to_csv(out_path)
+    print(f'Writing to log file : {server_home_dir}/last_scan.txt')
     with open(os.path.join(server_home_dir, 'last_scan.txt'), 'w') as f:
         f.write(date_time)
         f.write('\n\n')
@@ -193,9 +198,6 @@ def main():
     """Main function to run the script"""
     args = parse_arguments()
     start_time = time()
-    
-    script_path = os.path.realpath(__file__)
-    dir_path = os.path.dirname(script_path)
     
     # Get and validate server path
     server_path = get_server_path(dir_path)
