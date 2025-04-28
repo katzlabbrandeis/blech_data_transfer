@@ -1,2 +1,6 @@
-date,time,user,email,recording,recording_path
-2024-11-11,16:22:22,Abuzar,abuzarmahmood@gmail.com,ORX15_spont_230529_095725,/media/files_brandeis_drive/Abuzar_Data/transfer_test/ORX15_spont_230529_095725
+date,time,user,email,recording,recording_path,info_file_exists
+2024-11-11,16:29:57,Abuzar,abuzarmahmood@gmail.com,ORX15_spont_230529_095725,/media/files_brandeis_drive/Abuzar_Data/transfer_test/ORX15_spont_230529_095725,True
+2024-11-12,10:51:27,Abuzar,abuzarmahmood@gmail.com,ORX15_spont_230529_095725,-1/ORX15_spont_230529_095725,True
+2024-11-12,11:04:39,Abuzar,abuzarmahmood@gmail.com,ORX15_spont_230529_095725,/media/files_brandeis_drive/Abuzar_Data/transfer_test_3/ORX15_spont_230529_095725,True
+2024-12-13,10:03:42,Abuzar,abuzarmahmood@gmail.com,eb24_behandephys_11_12_24_241112_114659,/media/files_brandeis_drive/Abuzar_Data/test/eb24_behandephys_11_12_24_241112_114659,True
+2024-12-13,14:28:46,Abuzar,abuzarmahmood@gmail.com,YW8_test1_4tastes_240508_152905,/media/files_brandeis_drive/Abuzar_Data/test2/YW8_test1_4tastes_240508_152905,True
