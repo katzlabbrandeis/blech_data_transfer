@@ -8,7 +8,8 @@ from glob import glob
 from io import StringIO
 import sys
 
-from blech_data_sentry import (
+# Update import path to use the src module
+from src.blech_data_sentry import (
     parse_arguments,
     get_server_path,
     setup_server_home_dir,
@@ -274,15 +275,15 @@ def test_write_results(mock_server_structure):
         assert 'Blacklist:\nuser3' in content
         assert 'Top level directories processed:\nuser1\nuser2' in content
 
-@patch('blech_data_sentry.parse_arguments')
-@patch('blech_data_sentry.get_server_path')
-@patch('blech_data_sentry.setup_server_home_dir')
-@patch('blech_data_sentry.handle_blacklist')
-@patch('blech_data_sentry.get_directories_to_scan')
-@patch('blech_data_sentry.scan_for_info_files')
-@patch('blech_data_sentry.create_dataset_frame')
-@patch('blech_data_sentry.check_metadata')
-@patch('blech_data_sentry.write_results')
+@patch('src.blech_data_sentry.parse_arguments')
+@patch('src.blech_data_sentry.get_server_path')
+@patch('src.blech_data_sentry.setup_server_home_dir')
+@patch('src.blech_data_sentry.handle_blacklist')
+@patch('src.blech_data_sentry.get_directories_to_scan')
+@patch('src.blech_data_sentry.scan_for_info_files')
+@patch('src.blech_data_sentry.create_dataset_frame')
+@patch('src.blech_data_sentry.check_metadata')
+@patch('src.blech_data_sentry.write_results')
 def test_main(mock_write, mock_check, mock_create, mock_scan, mock_get_dirs, 
               mock_handle, mock_setup, mock_get_path, mock_parse):
     """Test the main function with mocked dependencies"""
