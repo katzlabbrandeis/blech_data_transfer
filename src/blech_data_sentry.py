@@ -181,7 +181,9 @@ def write_results(dataset_frame, server_home_dir, start_time, blacklist_str, top
     time_taken = end_time - start_time
     print(f'Writing dataset_frame to csv file')
     out_path = os.path.join(server_home_dir, f'dataset_frame.csv')
+    print(f'Output path: {out_path}')
     dataset_frame.to_csv(out_path)
+    print(f'Writing to log file : {server_home_dir}/last_scan.txt')
     with open(os.path.join(server_home_dir, 'last_scan.txt'), 'w') as f:
         f.write(date_time)
         f.write('\n\n')
