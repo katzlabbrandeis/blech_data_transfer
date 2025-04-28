@@ -1,6 +1,12 @@
 """
-Scan the file-system for any datasets and see if they have accompanied metadata
-If not, email user to request metadata
+Scan the file-system for any datasets and check if they have accompanying metadata.
+
+This script searches through the server directory structure to find all datasets
+(identified by info.rhd files) and checks if they have the required metadata files
+(*.info). The results are saved to a CSV file for tracking purposes.
+
+If metadata is missing, this information can be used to contact users to request
+the missing metadata.
 """
 
 import os
