@@ -263,31 +263,35 @@ def prepare_file_transfer(data_folder, copy_dir):
 
 dir_list, file_list, rel_file_list, server_data_folder = prepare_file_transfer(data_folder, copy_dir)
 
-# Create directories on the server
-pbar = tqdm(dir_list)
-for d in pbar:
-    rel_dir = os.path.relpath(d, data_folder)
-    pbar.set_description(f"Creating {rel_dir}")
-    server_dir = os.path.join(server_data_folder, rel_dir)
-    if not os.path.exists(server_dir):
-        os.makedirs(server_dir)
-    else:
-        print(f"Directory already exists on the server: {server_dir}")
-        print("")
+def transfer_data(data_folder, server_data_folder, dir_list, rel_file_list):
+    """Transfer data from local folder to server."""
+    # Create directories on the server
+    pbar = tqdm(dir_list)
+    for d in pbar:
+        rel_dir = os.path.relpath(d, data_folder)
+        pbar.set_description(f"Creating {rel_dir}")
+        server_dir = os.path.join(server_data_folder, rel_dir)
+        if not os.path.exists(server_dir):
+            os.makedirs(server_dir)
+        else:
+            print(f"Directory already exists on the server: {server_dir}")
+            print("")
 
-# Copy files to the server
-pbar = tqdm(rel_file_list)
-for file in pbar:
-    pbar.set_description(f"Copying {file}")
-    src_path = os.path.join(data_folder, file)
-    dst_path = os.path.join(server_data_folder, file)
-    if not os.path.exists(dst_path): 
-        shutil.copy2(src_path, dst_path)
-    else:
-        print(f"File already exists on the server: {file}")
-        print("")
-print("Data transfer complete.")
-print("")
+    # Copy files to the server
+    pbar = tqdm(rel_file_list)
+    for file in pbar:
+        pbar.set_description(f"Copying {file}")
+        src_path = os.path.join(data_folder, file)
+        dst_path = os.path.join(server_data_folder, file)
+        if not os.path.exists(dst_path): 
+            shutil.copy2(src_path, dst_path)
+        else:
+            print(f"File already exists on the server: {file}")
+            print("")
+    print("Data transfer complete.")
+    print("")
+
+transfer_data(data_folder, server_data_folder, dir_list, rel_file_list)
 
 ##############################
 ##############################
