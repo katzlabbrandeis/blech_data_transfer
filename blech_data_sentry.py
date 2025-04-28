@@ -22,7 +22,7 @@ dir_path = os.path.dirname(script_path)
 
 # dir_path = '/media/bigdata/projects/blech_data_transfer'
 # get blech_server_path.txt
-server_path_file = os.path.join(dir_path, 'blech_server_path.txt')
+server_path_file = os.path.join(dir_path, 'local_only_files', 'blech_server_path.txt')
 with open(server_path_file, 'r') as f:
     server_path = f.read().strip()
 
